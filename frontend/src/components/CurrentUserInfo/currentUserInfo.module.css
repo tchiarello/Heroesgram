@@ -1,0 +1,10 @@
+.flexbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 5px 5px 5px;
+}
+
+.margin {
+  margin-left: 15px;
+}

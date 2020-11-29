@@ -1,0 +1,23 @@
+.bottom {
+  margin: 0 0 10px 0;
+}
+
+.top {
+  margin: 10px 0 0 0;
+}
+
+.topBottom {
+  margin: 10px 0;
+}
+
+.small {
+  font-size: 15px;
+}
+
+.medium {
+  font-size: 25px;
+}
+
+.bold {
+  font-weight: bold;
+}

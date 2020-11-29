@@ -1,0 +1,22 @@
+.flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexboxStart {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.margin {
+  margin: 0 0 0 7px;
+}
+
+.marginRight {
+  margin-right: 10px;
+}

@@ -1,0 +1,11 @@
+.grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  column-gap: 5px;
+  align-items: center;
+  padding: 10px 5px 5px 5px;
+}
+
+.commentContainer {
+  margin: 0;
+}

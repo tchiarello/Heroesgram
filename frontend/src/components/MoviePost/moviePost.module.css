@@ -1,0 +1,41 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5px;
+  margin-bottom: 50px;
+  padding: 10px;
+  border: 1px solid rgb(99, 99, 99);
+  border-radius: 2px;
+}
+
+.commentsContainer {
+  width: auto;
+  height: 500px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 15px;
+}
+
+.addComment {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.textarea {
+  height: 70px;
+  resize: none;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border: 1px solid grey;
+  border-radius: 2px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.btn {
+  padding: 10px 25px;
+}

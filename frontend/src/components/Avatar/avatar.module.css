@@ -1,0 +1,16 @@
+.toLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.toBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spaceLeft {
+  margin-left: 10px;
+}
