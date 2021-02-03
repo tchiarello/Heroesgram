@@ -1,5 +1,5 @@
-import React from 'react';
-import MoviePost from '../MoviePost/MoviePost';
+import React from "react";
+import MoviePost from "../MoviePost/MoviePost";
 
 export default function Timeline(props) {
   return (
@@ -14,6 +14,7 @@ export default function Timeline(props) {
           comments={props.comments}
           onNewComment={props.onNewComment}
           onNewLike={props.onNewLike}
+          onDeletedComment={props.onDeletedComment}
         />
       ))}
     </div>

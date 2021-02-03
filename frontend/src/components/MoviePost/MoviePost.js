@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import css from './moviePost.module.css';
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import css from "./moviePost.module.css";
 
-import PostComment from '../PostComment/PostComment';
-import Likes from '../Likes/Likes';
-import CurrentUserComment from '../CurrentUserComment/CurrentUserComment';
+import PostComment from "../PostComment/PostComment";
+import Likes from "../Likes/Likes";
+import CurrentUserComment from "../CurrentUserComment/CurrentUserComment";
 
 export default function MoviePost(props) {
-  const [currentComment, setCurrentComment] = useState('');
-  // const [clickedLike, seClickedLike] = useState([]);
+  const [currentComment, setCurrentComment] = useState("");
 
   const likes = props.likes.filter((like) => like.postId === props.post.id);
   const comments = props.comments.filter(
@@ -19,7 +18,7 @@ export default function MoviePost(props) {
     setCurrentComment(event.target.value);
   }
 
-  async function handleAdd() {
+  async function handleAddComment() {
     if (!currentComment.trim()) return;
 
     const comment = {
@@ -29,38 +28,29 @@ export default function MoviePost(props) {
       postId: props.post.id,
     };
 
-    // adicionar o post no backend
-    const response = await fetch('http://localhost:3001/comments', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+    // add post backend
+    const response = await fetch("http://localhost:3001/comments", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(comment),
     });
 
-    // adicionar o post no frontend
+    // add post frontend
     if (response.ok) {
       props.onNewComment(comment);
-      setCurrentComment('');
+      setCurrentComment("");
     }
   }
 
-  async function handleLikes() {
-    const like = {
-      id: uuidv4(),
-      postId: props.post.id,
-      user: props.activeUser,
-    };
-
-    // adicionar o post no backend
-    const response = await fetch('http://localhost:3001/likes', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(like),
+  async function handleDeleteComment(id) {
+    // delete post backend
+    await fetch(`http://localhost:3001/comments/${id}`, {
+      method: "delete",
     });
 
-    // adicionar o post no frontend
-    if (response.ok) {
-      props.onNewLike(like);
-    }
+    // delete post frontend
+    const remove = comments.filter((comment) => comment.id !== id);
+    props.onDeletedComment(remove);
   }
 
   return (
@@ -84,7 +74,13 @@ export default function MoviePost(props) {
 
         <div className={css.commentsContainer}>
           {comments.map((comment, index) => (
-            <PostComment key={index} comment={comment} />
+            <div key={index}>
+              <PostComment
+                comment={comment}
+                activeUser={props.activeUser}
+                onDeleteComment={() => handleDeleteComment(comment.id)} //params that I want to the handleDeleteCommento to have
+              />
+            </div>
           ))}
         </div>
 
@@ -96,11 +92,14 @@ export default function MoviePost(props) {
             cols="30"
             rows="10"
             className={css.textarea}
-          >
-            Add a comment
-          </textarea>
+          ></textarea>
+
           <div>
-            <button onClick={handleAdd} className={css.btn}>
+            <button
+              onClick={handleAddComment}
+              disabled={currentComment.trim().length <= 0}
+              className={css.btn}
+            >
               Send
             </button>
           </div>

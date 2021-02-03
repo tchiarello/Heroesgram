@@ -1,12 +1,12 @@
-import React from 'react';
-import Avatar from '../Avatar/Avatar';
-import css from './changeUser.module.css';
-import classNames from 'classnames/bind';
+import React from "react";
+import Avatar from "../Avatar/Avatar";
+import css from "./changeUser.module.css";
+import classNames from "classnames/bind";
 
 export default function ChangeUser(props) {
   return (
     <div>
-      <h6 className={css.title}>Visualizar Timeline com:</h6>
+      <h6 className={css.title}>View Timeline as:</h6>
       <div className={css.flexbox}>
         {/* bestFriends = ["superman", "batman", "wonderWoman"] */}
         {props.bestFriends.map((bestFriend, index) => {

@@ -1,6 +1,8 @@
-import React from 'react';
-import css from './postComment.module.css';
-import Avatar from '../Avatar/Avatar';
+import React from "react";
+import css from "./postComment.module.css";
+import Avatar from "../Avatar/Avatar";
+import DeleteButton from "../DeleteButton/DeleteButton";
+// import EditButton from "../EditButton/EditButton";
 
 export default function PostComment(props) {
   return (
@@ -17,6 +19,14 @@ export default function PostComment(props) {
       <div>
         <p className={css.margin}>{props.comment.comment}</p>
       </div>
+
+      <div>
+        {props.activeUser === props.comment.user && (
+          <DeleteButton onDeleteComment={props.onDeleteComment} />
+        )}
+      </div>
+
+      {/* <div>{props.activeUser === props.comment.user && <EditButton />}</div> */}
     </div>
   );
 }

@@ -5,34 +5,24 @@ import Header from "../Header/Header";
 import CurrentUserInfo from "../CurrentUserInfo/CurrentUserInfo";
 import ChangeUser from "../ChangeUser/ChangeUser";
 import Timeline from "../Timeline/Timeline";
-import Spinner from "../Spinner/Spinner";
 
 export default function Heroesgram() {
   const timelineUser = "superman";
   const [activeUser, setActiveUser] = useState("superman");
 
   const [posts, setPosts] = useState([]);
-  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
   const [comments, setComments] = useState([]);
-  const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [likes, setLikes] = useState([]);
   const [bestFriends, setBestFriends] = useState([timelineUser]);
 
-  const isLoadingAll = isLoadingPosts || isLoadingComments;
-
   useEffect(() => {
     const getPosts = async () => {
-      setIsLoadingPosts(true);
+      const res = await fetch(
+        `http://localhost:3001/posts?user=${timelineUser}`
+      );
+      const json = await res.json();
 
-      setTimeout(async () => {
-        const res = await fetch(
-          `http://localhost:3001/posts?user=${timelineUser}`
-        );
-        const json = await res.json();
-
-        setPosts(json);
-        setIsLoadingPosts(false);
-      }, 2000);
+      setPosts(json);
     };
 
     getPosts();
@@ -83,8 +73,8 @@ export default function Heroesgram() {
     setLikes((current) => [...current, newLike]);
   }
 
-  if (isLoadingAll) {
-    return <Spinner />;
+  function onDeletedComment(deletedComment) {
+    setComments(deletedComment);
   }
 
   return (
@@ -118,6 +108,7 @@ export default function Heroesgram() {
         timelineUser={timelineUser}
         onNewComment={onNewComment}
         onNewLike={onNewLike}
+        onDeletedComment={onDeletedComment}
       />
     </div>
   );

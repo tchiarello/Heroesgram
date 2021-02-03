@@ -1,8 +1,8 @@
-import React from 'react';
-import css from './AvatarImage.module.css';
+import React from "react";
+import css from "./AvatarImage.module.css";
 
 export default function AvatarImage(props) {
-  const sizeClassName = css[props.size] || css['medium'];
+  const sizeClassName = css[props.size] || css["medium"];
 
   if (!props.user) {
     // eslint-disable-next-line
@@ -18,4 +18,4 @@ export default function AvatarImage(props) {
   );
 }
 
-// return <img src={`/img/batman.png`} alt={alt} />;
+// return <img src={`/img/batman.png`} />;
